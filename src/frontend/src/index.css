@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Light cool-gray/blue theme */
+    --background: 0.97 0.007 240;
+    --foreground: 0.15 0.025 255;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.025 255;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.025 255;
+    --primary: 0.53 0.23 264;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.94 0.012 240;
+    --secondary-foreground: 0.15 0.025 255;
+    --muted: 0.95 0.008 240;
+    --muted-foreground: 0.46 0.025 255;
+    --accent: 0.94 0.05 265;
+    --accent-foreground: 0.53 0.23 264;
+    --destructive: 0.58 0.22 25;
+    --destructive-foreground: 1 0 0;
+    --border: 0.91 0.012 245;
+    --input: 0.91 0.012 245;
+    --ring: 0.53 0.23 264;
+
+    --chart-1: 0.53 0.23 264;
+    --chart-2: 0.7 0.18 142;
+    --chart-3: 0.58 0.22 25;
+    --chart-4: 0.65 0.18 310;
+    --chart-5: 0.6 0.15 60;
+
+    --sidebar: 0.97 0.007 240;
+    --sidebar-foreground: 0.15 0.025 255;
+    --sidebar-primary: 0.53 0.23 264;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.012 240;
+    --sidebar-accent-foreground: 0.15 0.025 255;
+    --sidebar-border: 0.91 0.012 245;
+    --sidebar-ring: 0.53 0.23 264;
+
+    /* Brand tokens */
+    --brand-blue: 0.53 0.23 264;
+    --pill-selected-bg: 0.94 0.05 265;
+    --pill-selected-border: 0.72 0.16 264;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    min-height: 100vh;
+  }
+}
+
+/* ─── Logo gradient ─────────────────────────────────── */
+.logo-gradient {
+  background: linear-gradient(
+    135deg,
+    #06b6d4 0%,
+    #3b82f6 30%,
+    #8b5cf6 60%,
+    #ec4899 80%,
+    #f59e0b 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Hero mesh orbs ────────────────────────────────── */
+.hero-orb-cyan {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    oklch(0.8 0.14 210 / 0.38) 0%,
+    transparent 70%
+  );
+  filter: blur(64px);
+  pointer-events: none;
+}
+.hero-orb-violet {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    oklch(0.7 0.2 300 / 0.32) 0%,
+    transparent 70%
+  );
+  filter: blur(72px);
+  pointer-events: none;
+}
+.hero-orb-pink {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    oklch(0.72 0.18 340 / 0.25) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+/* ─── Glass panel ───────────────────────────────────── */
+.glass-panel {
+  background: oklch(1 0 0 / 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.8);
+  box-shadow: 0 2px 8px oklch(0 0 0 / 0.06), 0 16px 48px oklch(0 0 0 / 0.08),
+    inset 0 1px 0 oklch(1 0 0 / 0.9);
+}
+
+/* ─── Button ────────────────────────────────────────── */
+.btn-primary-glow {
+  box-shadow: 0 2px 12px oklch(0.53 0.23 264 / 0.4);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.btn-primary-glow:hover {
+  box-shadow: 0 4px 20px oklch(0.53 0.23 264 / 0.55);
+  transform: translateY(-1px);
+}
+.btn-primary-glow:active {
+  transform: translateY(0);
+}
+
+/* ─── Gallery card overlay ──────────────────────────── */
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.gallery-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+}
+.gallery-card:hover .gallery-card-img {
+  transform: scale(1.06);
+}
+
+.gallery-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    oklch(0.1 0.02 255 / 0.88) 0%,
+    oklch(0.1 0.02 255 / 0.4) 45%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gallery-card:hover .gallery-card-overlay {
+  opacity: 1;
+}
+
+.gallery-card-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s
+    ease;
+}
+.gallery-card:hover .gallery-card-meta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.gallery-card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.gallery-card:hover .gallery-card-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: oklch(1 0 0 / 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  color: oklch(0.25 0.02 255);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+.gallery-action-btn:hover {
+  background: oklch(1 0 0 / 0.98);
+  transform: scale(1.08);
+}
+.gallery-action-btn.delete:hover {
+  background: oklch(0.95 0.04 25);
+  color: oklch(0.55 0.22 25);
+}
+
+/* ─── CTA gradient border ───────────────────────────── */
+.cta-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.16 264 / 0.6),
+    oklch(0.7 0.2 300 / 0.4),
+    oklch(0.72 0.18 340 / 0.5)
+  );
+}
+.cta-card-inner {
+  background: oklch(0.99 0.004 240);
+  border-radius: 18px;
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% -20%,
+    oklch(0.8 0.12 264 / 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ─── Shimmer animation ─────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.91 0.012 245) 25%,
+    oklch(0.95 0.008 240) 50%,
+    oklch(0.91 0.012 245) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* ─── Card shadow utils ─────────────────────────────── */
+.card-shadow {
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.07), 0 4px 12px oklch(0 0 0 / 0.05);
+}
